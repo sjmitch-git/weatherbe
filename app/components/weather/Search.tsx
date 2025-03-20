@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { FaSearch } from "react-icons/fa";
 
 const Search = () => {
   const [city, setCity] = useState<string>("");
@@ -14,19 +15,19 @@ const Search = () => {
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-0">
       <input
         type="text"
         value={city}
         onChange={(e) => setCity(e.target.value)}
         placeholder="Enter city name"
-        className="border border-gray-300 rounded px-2 py-1"
+        className="border border-gray-300 w-36 rounded-none px-2 py-1 focus-visible:outline-none focus:border-accent"
       />
       <button
         onClick={handleSearch}
-        className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+        className="bg-primary flex flex-grow items-center gap-2 rounded-none text-white px-4 py-1 hover:bg-primary-dark"
       >
-        Search
+        <FaSearch /> <span className="max-sm:hidden">Search</span>
       </button>
     </div>
   );

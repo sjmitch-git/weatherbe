@@ -1,58 +1,30 @@
-"use client";
+import { CurrentData } from "@lib/types";
 
-import { useEffect, useState } from "react";
-
-interface CurrentProps {
-  readonly q: string;
-}
-
-const Current = ({ q }: CurrentProps) => {
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(`/api/current/${q}`);
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (err: any) {
-        setError(err.message || "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [q]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+const Current = ({ data }: { data: CurrentData }) => {
+  const { temp_c, humidity, wind_kph, condition } = data.current;
 
   return (
-    <div>
-      <h2>Current Weather</h2>
-      {data ? (
-        <div>
-          <p>Location: {data.location?.name}</p>
-          <p>Temperature: {data.current?.temp_c}°C</p>
-          <p>Condition: {data.current?.condition?.text}</p>
+    <div className="p-4 border rounded shadow-md">
+      <h2 className="text-xl font-semibold mb-4">Current Weather</h2>
+      <div className="flex items-center justify-between space-x-2 md:space-x-8">
+        <div className="flex max-sm:flex-col items-center">
+          <img src={condition.icon} alt={condition.text} className="w-12 md:w-24 h-12 md:h-24" />
+          <p className="text-2xl">{condition.text}</p>
         </div>
-      ) : (
-        <p>No data available</p>
-      )}
+
+        <div>
+          <p className="text-base md:text-lg text-right">Temp.</p>
+          <p className="text-lg md:text-2xl font-bold">{temp_c}°C</p>
+        </div>
+        <div>
+          <p className="text-base md:text-lg">Humidity</p>
+          <p className="text-lg md:text-2xl font-bold text-right">{humidity}%</p>
+        </div>
+        <div>
+          <p className="text-base md:text-lg">Wind Speed</p>
+          <p className="text-lg md:text-2xl font-bold text-right">{wind_kph} kph</p>
+        </div>
+      </div>
     </div>
   );
 };

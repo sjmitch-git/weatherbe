@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Props) {
         <body className={`antialiased flex flex-col min-h-screen`}>
           <Header />
 
-          <main className="flex-grow container mx-auto max-w-4xl pt-12 pb-12 lg:py-20 px-0">
+          <main className="flex-grow container mx-auto max-w-4xl pt-12 px-4 md:px-0">
             {children}
           </main>
 

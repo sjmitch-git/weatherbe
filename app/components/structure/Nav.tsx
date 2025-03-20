@@ -8,7 +8,7 @@ const Search = dynamic(() => import("@components/weather/Search"), {
 
 export default function Nav() {
   return (
-    <div className="flex items-center gap-2 md:gap-4">
+    <div className="flex items-center">
       <Search />
     </div>
   );
