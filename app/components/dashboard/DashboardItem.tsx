@@ -9,15 +9,19 @@ const DashboardItem = ({ id }: { id: string }) => {
   const { data, loading, error } = useFetchCurrent(id);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
+    return <p className="text-error">Error: {error}</p>;
   }
 
   if (!data) {
-    return <p>No data available.</p>;
+    return <p className="text-error">No data available.</p>;
   }
 
   return (

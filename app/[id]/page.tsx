@@ -1,7 +1,7 @@
+import { Metadata } from "next";
 import { WeatherData } from "@/lib/types";
 import Current from "@components/weather/Current";
 import Forecast from "@components/weather/Forecast";
-import Bookmark from "@components/weather/Bookmark";
 import BookmarkButton from "@components/weather/BookmarkButton";
 
 type Props = {
@@ -16,6 +16,16 @@ const fetchForecastData = async (id: string): Promise<WeatherData> => {
   const data: WeatherData = await response.json();
   return data;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const weather = await fetchForecastData(id);
+
+  return {
+    title: `${weather.location.name}, ${weather.location.country} - current weather`,
+    description: `Get the latest weather forecast for ${weather.location.name}`,
+  };
+}
 
 const ForecastlPage = async ({ params }: Props) => {
   const { id } = await params;

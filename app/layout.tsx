@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { StoreProvider } from "./StoreProvider";
+import type { Metadata } from "next";
+import { METDATA } from "@lib/constants";
 import Header from "@components/structure/Header";
 import Footer from "@components/structure/Footer";
 import Dashboard from "@components/dashboard/Dashboard";
@@ -9,6 +11,13 @@ import "./styles/globals.css";
 interface Props {
   readonly children: ReactNode;
 }
+
+export const metadata: Metadata = {
+  title: {
+    template: `%s | ${METDATA.defaultSiteTitle}`,
+    default: METDATA.defaultSiteTitle,
+  },
+};
 
 export default function RootLayout({ children }: Props) {
   return (

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { METDATA } from "@lib/constants";
 
 export default function IndexPage() {
@@ -12,7 +11,3 @@ export default function IndexPage() {
     </article>
   );
 }
-
-export const metadata: Metadata = {
-  title: "Weather Be",
-};
