@@ -5,7 +5,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/weatherbe.git
+   git clone https://github.com/sjmitch-git/weatherbe.git
    ```
 
 2. Navigate to the project directory:
@@ -35,7 +35,7 @@ OWM_TOKEN=your_openweathermap_api_key
 
 Replace `your_openweathermap_api_key` with your actual OpenWeatherMap API key.
 
-### Running the Project
+## Running the Project
 
 Start the development server:
 
@@ -62,3 +62,4 @@ You can view the live version of the app at:
 - Create end-to-end (e2e) tests using Cypress.
 - Add autocomplete functionality for city search.
 - Add charts to display weather data visually.
+- Add ESLint for consistent code quality and style enforcement.
