@@ -14,7 +14,7 @@ const Dashboard = () => {
         <p className="text-info font-semibold">No bookmarked locations yet.</p>
       ) : (
         <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {locations.map((location, index) => (
+          {locations.map((location, _index) => (
             <li key={location}>
               <DashboardItem id={location} />
             </li>

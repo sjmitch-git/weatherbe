@@ -8,18 +8,28 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-const fetchForecastData = async (id: string): Promise<WeatherData> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/forecast/${id}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data for ${id}`);
+const fetchForecastData = async (id: string): Promise<WeatherData | null> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/forecast/${id}`);
+    if (!response.ok) {
+      return null;
+    }
+    const data: WeatherData = await response.json();
+    return data;
+  } catch {
+    return null;
   }
-  const data: WeatherData = await response.json();
-  return data;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const weather = await fetchForecastData(id);
+
+  if (!weather) {
+    return {
+      title: "Error",
+    };
+  }
 
   return {
     title: `${weather.location.name}, ${weather.location.country} - current weather`,
@@ -30,25 +40,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ForecastlPage = async ({ params }: Props) => {
   const { id } = await params;
 
-  let weather: WeatherData | null = null;
-  let error: string | null = null;
-
-  try {
-    weather = await fetchForecastData(id);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      error = err.message;
-    } else {
-      error = "An unknown error occurred";
-    }
-  }
-
-  if (error) {
-    return <p className="text-error font-semibold">{error}</p>;
-  }
+  const weather = await fetchForecastData(id);
 
   if (!weather) {
-    return <p className="text-error font-semibold">City not found</p>;
+    return (
+      <article>
+        <p className="text-error font-semibold">
+          City not found. Please check the search query and try again.
+        </p>
+      </article>
+    );
   }
 
   return (

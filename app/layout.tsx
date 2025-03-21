@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { METDATA } from "@lib/constants";
 import Header from "@components/structure/Header";
 import Footer from "@components/structure/Footer";
-import Dashboard from "@components/dashboard/Dashboard";
+import Common from "@components/structure/Common";
 
 import "./styles/globals.css";
 
@@ -28,8 +28,7 @@ export default function RootLayout({ children }: Props) {
 
           <main className="flex-grow container mx-auto max-w-4xl py-12 px-4 lg:px-0 space-y-12">
             {children}
-            <hr />
-            <Dashboard />
+            <Common />
           </main>
 
           <Footer />
