@@ -1,6 +1,8 @@
 import { WeatherData } from "@/lib/types";
 import Current from "@components/weather/Current";
+import Forecast from "@components/weather/Forecast";
 import Bookmark from "@components/weather/Bookmark";
+import BookmarkButton from "@components/weather/BookmarkButton";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -23,7 +25,6 @@ const ForecastlPage = async ({ params }: Props) => {
 
   try {
     weather = await fetchForecastData(id);
-    console.log("weather", weather);
   } catch (err: unknown) {
     if (err instanceof Error) {
       error = err.message;
@@ -42,14 +43,27 @@ const ForecastlPage = async ({ params }: Props) => {
 
   return (
     <article>
-      <h1 className="text-4xl mb-8">{weather.location.name}</h1>
-      <h2 className="text-2xl mb-4">
-        {weather.location.region}, {weather.location.country}
-      </h2>
-      <div className="flex justify-between items-center mb-4">
-        <Bookmark location={weather.location.name} />
+      <div className="mb-8 relative">
+        <div className="flex flex-col">
+          <h1 className="text-4xl mb-8 font-semibold">{weather.location.name}</h1>
+          <h2 className="text-2xl mb-4">
+            {weather.location.region}, {weather.location.country}
+          </h2>
+        </div>
+        <div className="absolute right-0 top-0">
+          <BookmarkButton location={weather.location.name} />
+        </div>
       </div>
-      <Current data={{ current: weather.current }} />
+      <div className="space-y-8">
+        <div>
+          <h2 className="text-xl font-semibold mb-4">Current Weather</h2>
+          <Current data={{ current: weather.current }} />
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold mb-4">5-day Forecast</h2>
+          <Forecast data={{ forecastday: weather.forecast.forecastday }} />
+        </div>
+      </div>
     </article>
   );
 };

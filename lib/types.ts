@@ -13,14 +13,15 @@ export interface WeatherData {
       icon: string;
     };
   };
-  forecast?: {
+  forecast: {
     forecastday: Array<{
       date: string;
+      date_epoch: number;
       day: {
-        maxtemp_c: number;
-        mintemp_c: number;
+        avgtemp_c: number;
         condition: {
           text: string;
+          icon: string;
         };
       };
     }>;
@@ -37,4 +38,35 @@ export interface CurrentData {
       icon: string;
     };
   };
+}
+
+export interface CurrentWeatherData {
+  location: {
+    name: string;
+    region: string;
+    country: string;
+  };
+  current: {
+    temp_c: number;
+    condition: {
+      text: string;
+      icon: string;
+    };
+    humidity: number;
+    wind_kph: number;
+  };
+}
+
+export interface ForecastData {
+  forecastday: Array<{
+    date: string;
+    date_epoch: number;
+    day: {
+      avgtemp_c: number;
+      condition: {
+        text: string;
+        icon: string;
+      };
+    };
+  }>;
 }

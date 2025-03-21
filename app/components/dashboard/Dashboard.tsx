@@ -2,20 +2,21 @@
 
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/store";
+import DashboardItem from "@components/dashboard/DashboardItem";
 
 const Dashboard = () => {
-  const locations = useSelector((state: RootState) => state.locations.locations);
+  const locations = useSelector((state: RootState) => state.locations.locations as string[]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
       {locations.length === 0 ? (
-        <p className="text-gray-500">No bookmarked locations yet.</p>
+        <p className="text-info font-semibold">No bookmarked locations yet.</p>
       ) : (
-        <ul className="space-y-2">
+        <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {locations.map((location, index) => (
-            <li key={index} className="p-2 border rounded shadow">
-              {location}
+            <li key={location}>
+              <DashboardItem id={location} />
             </li>
           ))}
         </ul>

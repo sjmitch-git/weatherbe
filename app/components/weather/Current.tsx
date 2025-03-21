@@ -5,7 +5,6 @@ const Current = ({ data }: { data: CurrentData }) => {
 
   return (
     <div className="p-4 border rounded shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Current Weather</h2>
       <div className="flex items-center justify-between space-x-2 md:space-x-8">
         <div className="flex max-sm:flex-col items-center">
           <img src={condition.icon} alt={condition.text} className="w-12 md:w-24 h-12 md:h-24" />
