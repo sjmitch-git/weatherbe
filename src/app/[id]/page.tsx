@@ -62,7 +62,7 @@ const ForecastlPage = async ({ params }: Props) => {
           </h2>
         </div>
         <div className="absolute right-0 top-0">
-          <BookmarkButton location={weather.location.name} />
+          <BookmarkButton location={`${weather.location.name},${weather.location.region}`} />
         </div>
       </div>
       <div className="space-y-8">

@@ -27,24 +27,25 @@ const DashboardItem = ({ id }: { id: string }) => {
   return (
     <div className="p-2 md:p-4 border rounded shadow-md hover:shadow-lg">
       <Link href={`./${id}`}>
-        <h2 className="text-xl font-semibold mb-4">{data.location.name}</h2>
-        <div className="flex items-center space-x-2">
+        <h2 className="text-xl font-semibold mb-0">{data.location.name}</h2>
+        <p className="text-sm line-clamp-1 mb-2">{data.location.region}</p>
+        <div className="flex items-center space-x-2 mb-4">
           <img
             src={data.current.condition.icon}
             alt={data.current.condition.text}
-            className="w-12 md:w-24 h-12 md:h-24"
+            className="w-12 md:w-18 h-12 md:h-18"
           />
           <div>
             <p className="text-lg">{data.current.condition.text}</p>
             <p className="text-2xl font-bold">{data.current.temp_c}°C</p>
           </div>
         </div>
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <p>Humidity: {data.current.humidity}%</p>
           <p>Wind: {data.current.wind_kph} kph</p>
-        </div>
+        </div> */}
       </Link>
-      <div className="flex justify-center">
+      <div className="flex justify-center border-t border-neutral">
         <BookmarkButton location={id} />
       </div>
     </div>
