@@ -1,7 +1,7 @@
 "use client";
 
 import { Provider } from "react-redux";
-import { makeStore } from "@/lib/store";
+import { makeStore } from "./store";
 import type { ReactNode } from "react";
 
 interface Props {

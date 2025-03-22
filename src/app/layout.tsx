@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import { StoreProvider } from "./StoreProvider";
+import { StoreProvider } from "@store/StoreProvider";
 import type { Metadata } from "next";
 import { METDATA } from "@lib/constants";
 import Header from "@components/structure/Header";
 import Footer from "@components/structure/Footer";
 import Common from "@components/structure/Common";
 
-import "./styles/globals.css";
+import "../styles/globals.css";
 
 interface Props {
   readonly children: ReactNode;

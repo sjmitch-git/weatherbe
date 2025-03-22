@@ -1,8 +1,8 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { RootState } from "@/lib/store";
-import DashboardItem from "@components/dashboard/DashboardItem";
+import { RootState } from "@store/store";
+import DashboardItem from "./DashboardItem";
 
 const Dashboard = () => {
   const locations = useSelector((state: RootState) => state.locations.locations as string[]);

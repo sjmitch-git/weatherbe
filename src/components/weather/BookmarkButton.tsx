@@ -2,8 +2,8 @@
 
 import { FaBookmark } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/lib/store";
-import { addLocation, removeLocation } from "@/lib/locationsSlice";
+import { RootState } from "@store/store";
+import { addLocation, removeLocation } from "@store/locationsSlice";
 
 interface BookmarkButtonProps {
   location: string;
