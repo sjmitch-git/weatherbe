@@ -36,21 +36,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Get the latest weather forecast for ${weather.location.name}`,
     metadataBase: process.env.NEXT_PUBLIC_API_URL
       ? new URL(process.env.NEXT_PUBLIC_API_URL)
-      : undefined,
+      : new URL("http://localhost:3000"),
     openGraph: {
       title: `${weather.location.name}, ${weather.location.region} - Weather Forecast`,
       description: `Get the latest weather forecast for ${weather.location.name}, ${weather.location.region}, including current conditions and a 5-day forecast.`,
-      url: `https://weatherbe.vercel.app/${id}`,
+      url: `/${id}`,
       siteName: "Weather Be",
       images: [
         {
-          url: weather.current.condition.icon,
-          width: 40,
-          height: 40,
+          url: `https:${weather.current.condition.icon}`,
+          width: 64,
+          height: 64,
           alt: `${weather.location.name} Weather`,
         },
       ],
       type: "website",
+    },
+    twitter: {
+      card: "summary",
     },
   };
 }
