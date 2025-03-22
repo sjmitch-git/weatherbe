@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     template: `%s | ${METDATA.defaultSiteTitle}`,
     default: METDATA.defaultSiteTitle,
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }: Props) {
